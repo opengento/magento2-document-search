@@ -1,0 +1,29 @@
+{
+    "name": "opengento/module-document-search",
+    "version": "1.0.0",
+    "description": "N/A",
+    "type": "magento2-module",
+    "require": {
+        "magento/framework": "*",
+        "magento/module-theme": "*",
+        "magento/module-widget": "*",
+        "opengento/module-document": "*",
+        "opengento/module-document-widget": "*"
+    },
+    "require-dev": {
+        "magento/magento-coding-standard": "^5",
+        "magento/marketplace-eqp": "^4.0",
+        "roave/security-advisories": "dev-master"
+    },
+    "license": [
+        "MIT"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Opengento\\DocumentSearch\\": ""
+        }
+    }
+}

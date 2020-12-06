@@ -1,0 +1,75 @@
+<?php
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Opengento\DocumentWidget\ViewModel\DocumentType;
+use Opengento\DocumentSearch\Api\SearchInterface;
+use Opengento\DocumentSearch\ViewModel\Search\Term;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+
+/** @var DocumentType $documentTypeViewModel */
+$documentTypeViewModel = $block->getData('documentTypeViewModel');
+/** @var Term $termViewModel */
+$termViewModel = $block->getData('termViewModel');
+?>
+<section class="block widget block-documents-search">
+    <div class="block-title">
+        <strong><?= $escaper->escapeHtml($block->getData('title')) ?></strong>
+    </div>
+    <form class="form-document-search"
+          action="<?= $escaper->escapeUrl($block->getData('actionUrl') ?: $block->getUrl('document/search/result')) ?>"
+          method="get"
+          id="form-validate"
+          data-hasrequired="<?= $escaper->escapeHtmlAttr(__('* Required Fields')) ?>"
+          data-mage-init='{"validation":{}}'>
+        <fieldset class="fieldset">
+            <legend class="legend"><span><?= $escaper->escapeHtml(__('Filters')) ?></span></legend><br>
+            <div class="field term required">
+                <label for="search_term" class="label">
+                    <span><?= $escaper->escapeHtml(__('Search term')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="text"
+                           name="<?= SearchInterface::QUERY_VAR_NAME ?>"
+                           value="<?= $escaper->escapeHtmlAttr($termViewModel->getTerm()) ?>"
+                           title="<?= $escaper->escapeHtmlAttr(__('Search term')) ?>"
+                           id="search_term"
+                           class="input-text required-entry"
+                           data-validate="{required:true}"
+                    />
+                </div>
+            </div>
+            <ul class="document-types-items">
+                <?php foreach ($documentTypeViewModel->getList() as $documentType): ?>
+                    <li class="document-types-item">
+                        <div class="field choice document-type">
+                            <input type="checkbox"
+                                   id="doc_type__<?= $escaper->escapeHtmlAttr($documentType->getId()) ?>"
+                                   name="types[]"
+                                   class="checkbox"
+                                   value="<?= $escaper->escapeHtmlAttr($documentType->getId()) ?>"
+                                   <?= $termViewModel->isChecked($documentType->getId()) ? 'checked="checked"' : '' ?>/>
+                            <label class="label" for="doc_type__<?= $escaper->escapeHtmlAttr($documentType->getId()) ?>">
+                                <span><?= $escaper->escapeHtml($documentType->getName()) ?></span>
+                            </label>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </fieldset>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" class="action search primary" title="<?= $escaper->escapeHtmlAttr(__('Search')) ?>">
+                    <span><?= $escaper->escapeHtml(__('Search')) ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+</section>

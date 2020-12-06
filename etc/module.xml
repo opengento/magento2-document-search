@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Opengento_DocumentSearch" setup_version="1.0.0">
+        <sequence>
+            <module name="Magento_Theme"/>
+            <module name="Magento_Widget"/>
+            <module name="Opengento_Document"/>
+            <module name="Opengento_DocumentWidget"/>
+        </sequence>
+    </module>
+</config>

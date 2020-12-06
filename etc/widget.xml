@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Opengento\DocumentSearch\Block\Widget\Search" id="document_search_widget_form">
+        <label>Document Search Widget Form</label>
+        <description>Document search form with facets.</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="true" visible="true" sort_order="10">
+                <label>Title</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="20">
+                <label>Template</label>
+                <options>
+                    <option name="default" value="Opengento_DocumentSearch::widget/search.phtml">
+                        <label>Document Search Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

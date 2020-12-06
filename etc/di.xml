@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Opengento\DocumentSearch\Api\SearchInterface" type="Opengento\DocumentSearch\Model\FullSearch"/>
+    <preference for="Opengento\DocumentSearch\Api\QueryInterface" type="Opengento\DocumentSearch\Model\Query"/>
+    <type name="Opengento\DocumentSearch\Model\Collection\CollectionModifier">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="select" xsi:type="object">Opengento\Document\Model\Document\Collection\SelectModifier</item>
+                <item name="sorter" xsi:type="object">Opengento\DocumentWidget\Model\Document\Collection\SorterModifier</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Opengento\DocumentSearch\Model\FullSearch">
+        <arguments>
+            <argument name="collectionModifier" xsi:type="object">Opengento\DocumentSearch\Model\Collection\CollectionModifier</argument>
+        </arguments>
+    </type>
+</config>

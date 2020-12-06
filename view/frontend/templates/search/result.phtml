@@ -1,0 +1,29 @@
+<?php
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Opengento\DocumentSearch\ViewModel\Search\Result;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+
+/** @var Result $searchResult */
+$searchResult = $block->getData('searchResult');
+?>
+<?php if ($searchResult->getResults()->getSize()): ?>
+    <div class="search results">
+        <?= $block->getChildBlock('list')->setData('collection', $searchResult->getResults())->toHtml() ?>
+    </div>
+<?php else: ?>
+    <div class="message notice">
+        <div>
+            <?= $escaper->escapeHtml($block->getData('no_result_text') ?: __('Your search returned no results.')) ?>
+            <?= $block->getChildChildHtml('additional') ?>
+        </div>
+    </div>
+<?php endif; ?>
