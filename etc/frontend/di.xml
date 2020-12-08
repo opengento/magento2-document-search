@@ -6,29 +6,27 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Opengento\DocumentSearch\Api\SearchInterface" type="Opengento\DocumentSearch\Model\FullSearch"/>
-    <preference for="Opengento\DocumentSearch\Api\QueryInterface" type="Opengento\DocumentSearch\Model\Query"/>
-    <type name="Opengento\Document\Model\Config\Source\Visibility">
+    <virtualType name="Opengento\Document\Model\Document\Collection\FrontendVisibilityModifier">
         <arguments>
-            <argument name="options" xsi:type="array">
-                <item name="search" xsi:type="array">
-                    <item name="label" xsi:type="string" translatable="true">Search</item>
-                    <item name="value" xsi:type="const">Opengento\DocumentSearch\Api\SearchInterface::VISIBILITY_SEARCH</item>
-                </item>
+            <argument name="visibilities" xsi:type="array">
+                <item name="search" xsi:type="const">Opengento\DocumentSearch\Api\SearchInterface::VISIBILITY_SEARCH</item>
             </argument>
         </arguments>
-    </type>
+    </virtualType>
     <type name="Opengento\DocumentSearch\Model\Collection\CollectionModifier">
         <arguments>
             <argument name="modifiers" xsi:type="array">
+                <item name="visibility" xsi:type="object">Opengento\Document\Model\Document\Collection\FrontendVisibilityModifier</item>
                 <item name="select" xsi:type="object">Opengento\Document\Model\Document\Collection\SelectModifier</item>
                 <item name="sorter" xsi:type="object">Opengento\DocumentWidget\Model\Document\Collection\SorterModifier</item>
             </argument>
         </arguments>
     </type>
-    <type name="Opengento\DocumentSearch\Model\FullSearch">
+    <type name="Opengento\DocumentSearch\ViewModel\DocumentType">
         <arguments>
-            <argument name="collectionModifier" xsi:type="object">Opengento\DocumentSearch\Model\Collection\CollectionModifier</argument>
+            <argument name="visibilities" xsi:type="array">
+                <item name="search" xsi:type="const">Opengento\DocumentSearch\Api\SearchInterface::VISIBILITY_SEARCH</item>
+            </argument>
         </arguments>
     </type>
 </config>

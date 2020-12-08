@@ -11,7 +11,7 @@
             <block name="document.search.form" template="Opengento_DocumentSearch::search/facets.phtml" as="facets">
                 <arguments>
                     <argument name="searchTerm" xsi:type="object">Opengento\DocumentSearch\ViewModel\Search\Term</argument>
-                    <argument name="documentTypeHelper" xsi:type="object">Opengento\DocumentWidget\ViewModel\DocumentType</argument>
+                    <argument name="documentTypeHelper" xsi:type="object">Opengento\DocumentSearch\ViewModel\DocumentType</argument>
                 </arguments>
             </block>
         </referenceContainer>

@@ -15,6 +15,7 @@ use Opengento\Document\Model\ResourceModel\Document\Collection;
  */
 interface SearchInterface
 {
+    public const VISIBILITY_SEARCH = 'search';
     public const QUERY_VAR_NAME = 'q';
 
     /**

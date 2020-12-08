@@ -7,8 +7,9 @@ declare(strict_types=1);
 
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
+use Opengento\Document\Api\Data\DocumentTypeInterface;
+use Opengento\DocumentSearch\ViewModel\DocumentType;
 use Opengento\DocumentSearch\ViewModel\Search\Term;
-use Opengento\DocumentWidget\ViewModel\DocumentType;
 
 /** @var Template $block */
 /** @var Escaper $escaper */
@@ -18,6 +19,7 @@ $searchTerm = $block->getData('searchTerm');
 /** @var DocumentType $documentTypeHelper */
 $documentTypeHelper = $block->getData('documentTypeHelper');
 
+/** @var DocumentTypeInterface[] $activeTypes */
 $activeTypes = [];
 foreach ($documentTypeHelper->getList() as $documentType) {
     if ($searchTerm->isChecked($documentType->getId())) {
@@ -25,7 +27,6 @@ foreach ($documentTypeHelper->getList() as $documentType) {
     }
 }
 ?>
-
 <?php if ($activeTypes) :?>
     <div class="filter-current">
         <strong class="block-subtitle filter-current-subtitle"
@@ -35,8 +36,8 @@ foreach ($documentTypeHelper->getList() as $documentType) {
         <ol class="items">
             <?php foreach ($activeTypes as $activeType) : ?>
                 <li class="item">
-                    <span class="filter-label"><?= $escaper->escapeHtml(__($activeType->getName())) ?></span>
-                    <span class="filter-value"><?= $escaper->escapeHtml($block->stripTags($activeType->getCode())) ?></span>
+                    <span class="filter-label"><?= $escaper->escapeHtml(__('Type')) ?></span>
+                    <span class="filter-value"><?= $escaper->escapeHtml($activeType->getName()) ?></span>
                     <a class="action remove"
                        title="<?= $escaper->escapeHtmlAttr(__('Remove %1', $activeType->getName())) ?>"
                        href="<?= $block->getUrl('*/*/*', ['_current' => true, '_query' => ['types' => array_diff(array_keys($activeTypes), [$activeType->getId()])]]) ?>">
