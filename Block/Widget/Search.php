@@ -13,6 +13,7 @@ use Magento\Widget\Block\BlockInterface;
 use Opengento\DocumentSearch\ViewModel\DocumentType as DocumentTypeViewModel;
 use Opengento\DocumentSearch\ViewModel\Search\Term as SearchViewModel;
 use function array_merge;
+use function array_unique;
 
 class Search extends Template implements BlockInterface, IdentityInterface
 {
@@ -47,7 +48,7 @@ class Search extends Template implements BlockInterface, IdentityInterface
             }
         }
 
-        return array_merge(...$identities);
+        return array_unique(array_merge(...$identities));
     }
 
     protected function _beforeToHtml(): Search

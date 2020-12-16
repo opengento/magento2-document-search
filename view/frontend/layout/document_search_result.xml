@@ -18,18 +18,10 @@
         <referenceContainer name="content">
             <block name="document.search.result" template="Opengento_DocumentSearch::search/result.phtml">
                 <arguments>
-                    <argument name="cache_tags" xsi:type="array">
-                        <item name="documentType" xsi:type="const">Opengento\Document\Model\DocumentType::CACHE_TAG</item>
-                        <item name="document" xsi:type="const">Opengento\Document\Model\Document::CACHE_TAG</item>
-                    </argument>
                     <argument name="searchResult" xsi:type="object">Opengento\DocumentSearch\ViewModel\Search\Result</argument>
                 </arguments>
                 <block name="document.search.result.list" as="list" template="Opengento_DocumentWidget::document/list.phtml">
                     <arguments>
-                        <argument name="cache_tags" xsi:type="array">
-                            <item name="documentType" xsi:type="const">Opengento\Document\Model\DocumentType::CACHE_TAG</item>
-                            <item name="document" xsi:type="const">Opengento\Document\Model\Document::CACHE_TAG</item>
-                        </argument>
                         <argument name="urlHelper" xsi:type="object">Opengento\DocumentWidget\ViewModel\Document\Url</argument>
                         <argument name="imageHelper" xsi:type="object">Opengento\DocumentWidget\ViewModel\Document\Image</argument>
                         <argument name="target" xsi:type="string">_blank</argument>
@@ -53,7 +45,6 @@
                         </block>
                     </block>
                 </block>
-
             </block>
         </referenceContainer>
     </body>
