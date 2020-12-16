@@ -22,11 +22,23 @@
             </argument>
         </arguments>
     </type>
-    <type name="Opengento\DocumentSearch\ViewModel\DocumentType">
+    <virtualType name="Opengento\DocumentWidget\ViewModel\VisibleDocumentType">
         <arguments>
             <argument name="visibilities" xsi:type="array">
                 <item name="search" xsi:type="const">Opengento\DocumentSearch\Api\SearchInterface::VISIBILITY_SEARCH</item>
             </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Opengento\DocumentSearch\ViewModel\SearchableDocumentType" type="Opengento\DocumentWidget\ViewModel\DocumentType">
+        <arguments>
+            <argument name="visibilities" xsi:type="array">
+                <item name="search" xsi:type="const">Opengento\DocumentSearch\Api\SearchInterface::VISIBILITY_SEARCH</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\DocumentSearch\Block\Widget\Search">
+        <arguments>
+            <argument name="documentTypeViewModel" xsi:type="object">Opengento\DocumentSearch\ViewModel\SearchableDocumentType</argument>
         </arguments>
     </type>
 </config>
