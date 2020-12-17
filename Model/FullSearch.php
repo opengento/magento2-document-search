@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Opengento\DocumentSearch\Model;
 
 use Magento\Framework\Data\CollectionModifierInterface;
+use Magento\Framework\DB\Helper;
 use Opengento\Document\Model\ResourceModel\Document\Collection;
 use Opengento\Document\Model\ResourceModel\Document\CollectionFactory;
 use Opengento\DocumentSearch\Api\SearchInterface;
@@ -24,12 +25,19 @@ final class FullSearch implements SearchInterface
      */
     private $collectionModifier;
 
+    /**
+     * @var Helper
+     */
+    private $dbHelper;
+
     public function __construct(
         CollectionFactory $collectionFactory,
-        CollectionModifierInterface $collectionModifier
+        CollectionModifierInterface $collectionModifier,
+        Helper $dbHelper
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->collectionModifier = $collectionModifier;
+        $this->dbHelper = $dbHelper;
     }
 
     public function search(string $term, array $documentTypeIds): Collection
@@ -53,7 +61,7 @@ final class FullSearch implements SearchInterface
 
     private function applyTerm(Collection $documentCollection, string $term): Collection
     {
-        $term = '%' . $term . '%';
+        $term = $this->dbHelper->escapeLikeValue($term, ['position' => 'any']);
         $filters = [
             'fields' => [
                 'main_table.code',

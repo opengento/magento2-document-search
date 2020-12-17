@@ -18,6 +18,11 @@
             </argument>
         </arguments>
     </type>
+    <virtualType name="Opengento\DocumentSearch\Model\DB\Helper" type="Magento\Framework\DB\Helper">
+        <arguments>
+            <argument name="modulePrefix" xsi:type="string">Opengento_DocumentSearch</argument>
+        </arguments>
+    </virtualType>
     <type name="Opengento\DocumentSearch\Model\Collection\CollectionModifier">
         <arguments>
             <argument name="modifiers" xsi:type="array">
@@ -29,6 +34,7 @@
     <type name="Opengento\DocumentSearch\Model\FullSearch">
         <arguments>
             <argument name="collectionModifier" xsi:type="object">Opengento\DocumentSearch\Model\Collection\CollectionModifier</argument>
+            <argument name="dbHelper" xsi:type="object">Opengento\DocumentSearch\Model\DB\Helper</argument>
         </arguments>
     </type>
 </config>
