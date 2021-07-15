@@ -10,8 +10,8 @@ namespace Opengento\DocumentSearch\Block\Widget;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
-use Opengento\DocumentWidget\ViewModel\DocumentType as DocumentTypeViewModel;
 use Opengento\DocumentSearch\ViewModel\Search\Term as SearchViewModel;
+use Opengento\DocumentWidget\ViewModel\DocumentType as DocumentTypeViewModel;
 use function array_merge;
 use function array_unique;
 
