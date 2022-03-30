@@ -21,7 +21,7 @@ This module aims to make documents searchable for customers in Magento 2.
 
 Magento 2 Open Source or Commerce edition is required.
 
-###  Composer installation
+### Composer installation
 
 Run the following composer command:
 
